@@ -1,0 +1,31 @@
+plugins {
+    id "io.micronaut.build.internal.data-tck"
+    id "io.micronaut.build.internal.data-kotlin"
+}
+
+dependencies {
+    implementation platform(mn.micronaut.core.bom)
+
+    annotationProcessor mn.micronaut.inject.java
+    annotationProcessor projects.dataProcessor
+
+    api projects.dataTck
+    implementation mn.micronaut.http.client
+    implementation mn.micronaut.http.server.netty
+    implementation projects.dataModelKotlin
+    implementation projects.dataJdbc
+    implementation mnRxjava2.rxjava2
+    implementation libs.reactor
+    implementation mnTest.micronaut.test.spock
+    implementation mnTest.micronaut.test.core
+    implementation mn.jackson.databind
+    implementation libs.groovy.dateutil
+    implementation libs.javax.persistence.api
+    implementation libs.jakarta.persistence.api
+    api libs.jetbrains.annotations
+
+    compileOnly mn.micronaut.inject.groovy
+
+    runtimeOnly libs.cglib
+    runtimeOnly libs.objenesis
+}

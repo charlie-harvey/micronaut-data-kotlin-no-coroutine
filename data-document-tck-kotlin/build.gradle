@@ -1,0 +1,17 @@
+plugins {
+    id "io.micronaut.build.internal.data-tck"
+    id "io.micronaut.build.internal.data-kotlin"
+}
+
+dependencies {
+    annotationProcessor mn.micronaut.inject.java
+    annotationProcessor projects.dataDocumentProcessor
+
+    api projects.dataDocumentTck
+    implementation projects.dataModelKotlin
+    implementation mnTest.micronaut.test.spock
+    implementation mnTest.micronaut.test.core
+    implementation libs.jakarta.persistence.api
+
+    compileOnly mn.micronaut.inject.groovy
+}
