@@ -1,0 +1,57 @@
+plugins {
+    id "io.micronaut.build.internal.data-module"
+    id "io.micronaut.build.internal.data-kotlin"
+    id 'io.micronaut.test-resources'
+}
+
+micronaut {
+    version = libs.versions.micronaut.asProvider().get()
+    testResources {
+        clientTimeout = 300
+        version = libs.versions.micronaut.testresources.get()
+    }
+}
+
+dependencies {
+    annotationProcessor projects.dataDocumentProcessor
+    annotationProcessor mn.micronaut.inject.java
+    annotationProcessor mn.micronaut.graal
+    annotationProcessor libs.micronaut.docs
+
+    api projects.dataMongodb
+    api mnSerde.micronaut.serde.bson
+    api mnSerde.micronaut.serde.support
+    api (libs.micronaut.mongo.reactive) {
+        exclude group: "org.mongodb"
+        exclude group: "io.micronaut"
+    }
+    api (libs.micronaut.mongo.sync) {
+        exclude group: "org.mongodb"
+        exclude group: "io.micronaut"
+    }
+
+    compileOnly libs.mongodb.driver.sync
+    compileOnly libs.mongodb.driver.reactive
+    compileOnly mnReactor.micronaut.reactor
+
+    testAnnotationProcessor projects.dataDocumentProcessor
+    testAnnotationProcessor mn.micronaut.inject.java
+    testAnnotationProcessor libs.jakarta.persistence.api
+
+    testImplementation libs.mongodb.driver.sync
+    testImplementation libs.mongodb.driver.reactive
+    testImplementation projects.dataDocumentProcessor
+    testImplementation projects.dataDocumentTck
+    testImplementation libs.jakarta.persistence.api
+    testImplementation mnRxjava2.micronaut.rxjava2
+    testImplementation mnReactor.micronaut.reactor
+    testImplementation libs.jakarta.persistence.api
+    testImplementation mn.micronaut.validation
+    testImplementation platform(libs.testcontainers.bom)
+
+    // Remove after https://github.com/micronaut-projects/micronaut-test-resources/issues/142
+    testImplementation libs.testcontainers.spock
+    testImplementation libs.testcontainers.mongodb
+
+    testCompileOnly mn.micronaut.inject.groovy
+}
