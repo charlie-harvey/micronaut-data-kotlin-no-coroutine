@@ -34,6 +34,7 @@ micronautBuild {
 
 include 'data-bom'
 include 'data-model'
+include 'data-model-kotlin'
 include 'data-processor'
 include 'data-document-processor'
 include 'data-runtime'
@@ -42,18 +43,23 @@ include 'data-document-model'
 
 // Test Compatibility Kit
 include 'data-tck'
+include 'data-tck-kotlin'
 include 'data-document-tck'
+include 'data-document-tck-kotlin'
 
 // implementations
 include 'data-hibernate-jpa'
+include 'data-hibernate-jpa-kotlin'
 include 'data-hibernate-reactive'
 include 'data-hibernate6-jpa'
+include 'data-hibernate6-jpa-kotlin'
 
 include 'data-tx-hibernate'
 include 'data-tx-hibernate6'
 include 'data-jdbc'
 include 'data-r2dbc'
 include 'data-mongodb'
+include 'data-mongodb-kotlin'
 include 'data-azure-cosmos'
 
 // Spring compatibility
@@ -76,6 +82,7 @@ include 'doc-examples:example-hibernate-and-jdbc'
 include 'doc-examples:jdbc-example-java'
 include 'doc-examples:jdbc-example-groovy'
 include 'doc-examples:jdbc-example-kotlin'
+include 'doc-examples:jdbc-example-kotlin-repositories'
 include 'doc-examples:jdbc-example-records-java'
 
 include 'doc-examples:jdbc-multitenancy-datasource-example-java'
